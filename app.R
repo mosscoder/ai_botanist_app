@@ -75,7 +75,6 @@ server <-  function(input, output, session) {
   })
   
   observeEvent(input$stamp_time,{
-    stamped <- stamped_data
     format_set <- str_pad(input$photo_set, 4, pad = '0') 
     
     file_base <- paste0(format_set, '_', str_remove(input$objective, '_pos'), '.csv')
