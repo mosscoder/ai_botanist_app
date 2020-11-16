@@ -1,5 +1,7 @@
 library(tidyverse)
 
+baseDir <- '~/mpgPostdoc/projects/plantID/gh_data/'
+
 speices <- c('gaiari', #Gaillardia aristata
                    'ratcol', #Ratibita columnifera
                    'achmil', #Achilea millefolium
@@ -46,8 +48,8 @@ full_grid <- full_grid_ordered %>%
   mutate(random_pos = sample(1:20, size = 4, replace = FALSE)) %>%
   ungroup()
 
-write.csv(full_grid, '~/mpgPostdoc/projects/plantID/gh_data/photo_layout.csv', row.names = FALSE)
-write.csv(layoutPts, '~/mpgPostdoc/projects/plantID/gh_data/pts_layout.csv', row.names = FALSE)
+write.csv(full_grid, paste0(baseDir, 'photo_layout.csv'), row.names = FALSE)
+write.csv(layoutPts, paste0(baseDir, 'pts_layout.csv'), row.names = FALSE)
 
   
   
