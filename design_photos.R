@@ -1,4 +1,7 @@
 library(tidyverse)
+library(raster)
+
+set.seed(123)
 
 baseDir <- '~/mpgPostdoc/projects/plantID/gh_data/'
 
@@ -14,7 +17,13 @@ speices <- c('gaiari', #Gaillardia aristata
                    'centsto' #Centaurea stoebe
                    )
 
-month <- c('april','may','june','july','august','september','november')
+month <- c('april',
+           'may',
+           'june',
+           'july',
+           'august',
+           'september',
+           'november')
 
 base_grid <- expand.grid(as.character(speices), as.character(month)) %>% as.data.frame()
 colnames(base_grid) <- c('species','month')
@@ -37,7 +46,6 @@ centered_pos = rep(center_cells, length(photos_set_seq))
 corner_pos = rep(corner_cells, length(photos_set_seq))
 layoutPts <- rasterToPoints(layout) %>% as.data.frame()
 
-set.seed(123)
 full_grid <- full_grid_ordered %>% 
   sample_frac(1) %>% 
   mutate(ind = row_number(),
