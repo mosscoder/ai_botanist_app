@@ -38,10 +38,11 @@ ui <- fluidPage(sidebarLayout(
     ),
     radioButtons(
       "objective",
-      label = "Objective",
+      label = "Objective:",
       choices = c('center_pos', 'corner_pos', 'random_pos')
     ),
     checkboxGroupInput('flower_check', 'Which flowering:', choices = NULL),
+    textInput('notes', 'Notes:'),
     actionButton("stamp_time", "Stamp time")
   ),
   mainPanel(plotOutput('plot'))
@@ -87,7 +88,8 @@ server <-  function(input, output, session) {
       stamped <- data.frame(photo_set = format_set,
                             objective = input$objective,
                             time = Sys.time(),
-                            flower_inds = paste(input$flower_check, collapse = ' ')
+                            flower_inds = paste(input$flower_check, collapse = ' '),
+                            notes = input$notes
       )
                             
       write.csv(stamped, file_full, row.names = FALSE)
